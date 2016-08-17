@@ -1,0 +1,17 @@
+var path,
+    name,
+    pathWithName,
+    nameWithoutExtension,
+    oneWriterLink,
+    nvALTLink;
+
+path = editor.getFolderPath();
+name = editor.getFileName();
+pathWithName = encodeURIComponent(path + "/" + name);
+oneWriterLink = "onewriter://x-callback-url/open?path=" + pathWithName;
+nameWithoutExtension = name.replace(/\.[^/.]+$/, "");
+nvALTLink = "nvalt://find/" + encodeURIComponent(nameWithoutExtension) + "/";
+
+app.setClipboard(oneWriterLink + "\n\n" + nvALTLink);
+
+ui.hudSuccess("Copied link");
